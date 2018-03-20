@@ -1,3 +1,5 @@
+### Spring Boot Introduction
+
 - Build a simple Spring Boot Microservice with the following starter dependencies: Web, Actuator
 - Run the microservice and test the endpoint /actuator/health and /actuator/info
 - Annotate the Microservice with @RestController and implement a "Hello, World!" method, which respondes to an HTTP GET request.
