@@ -1,0 +1,4 @@
+FROM mhart/alpine-node:6.9.4
+COPY . /app
+WORKDIR /app
+CMD ["node","index.js"]
