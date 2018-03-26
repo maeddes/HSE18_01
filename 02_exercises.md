@@ -10,6 +10,7 @@
 - Get familiar with Dockerfiles
 - Build a Dockerfile, which runs your jar file you build in exercise 1
 - Test Docker container
+- Tag image with your docker username, like <username>/<imagename>:<version>
 - Upload Docker container to Docker hub
 - Pull and run uploaded container inside play-with-docker training session
 
