@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,9 +25,18 @@ public class HalloDataApplication {
 	ToDoItemRepository repository;
 
 	@GetMapping("/todos")
-	String todos() {
+	List<String> todos() {
 
-		return repository.findAll().toString();
+		System.out.println("In GET /todos: ");
+		
+		List<ToDoItem> items = repository.findAll();
+		List<String> toDos = new ArrayList<String>();
+		for(int i = 0; i < items.size(); i++){
+
+			boolean add = toDos.add(items.get(i).getToDo());
+
+		}
+        return toDos;
 
 	}
 
@@ -36,12 +48,27 @@ public class HalloDataApplication {
 		return todo +" created";
 	}
 
+	@PostMapping("/todos/done/{toDo}")
+	String delete(@PathVariable String toDo){
+
+		List<ToDoItem> toDos = repository.findByToDo(toDo);
+		System.out.println("Found list: "+toDos);
+		if (toDos.size() > 0) repository.delete(toDos.get(0));
+		return toDo +" deleted";
+
+	}
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(HalloDataApplication.class, args);
+
 	}
 }
 
 interface ToDoItemRepository extends CrudRepository<ToDoItem, Long>{
+
+	List<ToDoItem> findAll();
+	List<ToDoItem> findByToDo(String toDo);
 
 }
 
