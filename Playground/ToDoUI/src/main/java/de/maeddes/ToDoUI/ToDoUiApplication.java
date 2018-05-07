@@ -35,7 +35,6 @@ public class ToDoUiApplication {
         
         String url = "http://localhost:8080/todos/";
 
-        //ResponseEntity<String[]> response = template.getForEntity(url, String[].class);
         ResponseEntity<String[]> response = template.getForEntity(url, String[].class);
 
         System.out.println("In getItems: "+response);

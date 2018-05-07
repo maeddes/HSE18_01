@@ -24,6 +24,7 @@ public class HalloDataApplication {
 	@Autowired
 	ToDoItemRepository repository;
 
+	// not the best practice here, should be returned in JSON and parsed on client side
 	@GetMapping("/todos")
 	List<String> todos() {
 
@@ -53,6 +54,8 @@ public class HalloDataApplication {
 
 		List<ToDoItem> toDos = repository.findByToDo(toDo);
 		System.out.println("Found list: "+toDos);
+
+		//assumption that always the first hit is the one to remove
 		if (toDos.size() > 0) repository.delete(toDos.get(0));
 		return toDo +" deleted";
 
