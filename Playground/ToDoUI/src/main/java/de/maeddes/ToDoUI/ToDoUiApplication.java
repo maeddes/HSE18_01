@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import java.util.List;
-
 @Controller
 @RequestMapping("/")
 @SpringBootApplication
@@ -72,10 +69,12 @@ public class ToDoUiApplication {
 
         RestTemplate template = new RestTemplate();
 
-        String url = "http://localhost:8080/todos/done/" + toDo;
+        String url = "http://localhost:8080/todos/" + toDo;
 
-        ResponseEntity<String> response = template.postForEntity(url, null, String.class);
-        System.out.println("UI.deleteItem - POST Response: " + response.getBody());
+        //ResponseEntity<String> response = template.postForEntity(url, null, String.class);
+        //template.delete(new URI(url));
+        template.delete(url);
+        //System.out.println("UI.deleteItem - POST Response: " + response.getBody());
 
         return "redirect:/";
 
